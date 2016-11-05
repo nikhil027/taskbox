@@ -5,6 +5,7 @@ class ClientsController < ApplicationController
 	def index
 		@clients = current_user.clients #Client.where('user_id = ?',current_user.id) #Client.all
 	end
+	
 
 	def new
 		@client = Client.new 
