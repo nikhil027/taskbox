@@ -1,0 +1,59 @@
+<h2><%=@client.name %></h2>
+
+<br>
+
+
+<h3>Listing tasks of this client</h3>
+<ol>
+<% @client.tasks_of_clients.each do |task|%>
+	<li><%=task.title%> - <%= task.due_date%> - <%= task.is_complete%></li>
+<%end%>
+</ol>	
+
+
+<!-- 
+<ol>
+	<@client.projects.each do |project|%>
+		<li> <=link_to project.name, project_path(project) %> </li>
+	<end%>
+
+</ol>
+
+<h3><#"The total projects are : #{@projects.}"%></h3>
+
+<br> -->
+
+<!-- <h3>New Projects</h3>
+
+<ol>
+	<@client.projects.where('status = ?',"new").each do |project|%>
+		<li> <=project.name %> </li>
+	<end%>
+
+</ol>
+
+<br>
+
+<h3>On-going Projects</h3>
+
+<ol>
+	<@projects_ongoing.each do |project|%>
+		<li> <=project.name %> </li>
+	<end%>
+
+</ol>
+
+<br>
+
+<h3>Completed Projects</h3>
+
+<ol>
+	<@projects_completed.each do |project|%>
+		<li> <=project.name %> </li>
+	<end%>
+
+</ol>
+ -->
+
+
+<%=link_to "Back", clients_path %>

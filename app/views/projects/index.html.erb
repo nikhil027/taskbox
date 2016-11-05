@@ -1,0 +1,24 @@
+<h2>Listing Projects</h2>
+
+<!-- new_client_path will return a string "/projects/new"-->
+<%= link_to "Add Project", new_project_path %>
+
+<ul>
+	<% @projects.each do |project| %>
+		<li> <%=link_to project.name,project_path(project) %>
+	<!-- %A is Day, %d is Date, %b is Month, %y is Year- project.status - project.start_date.strftime("%A, %d %B %Y")-->
+
+	</li>
+	<%end%>
+
+
+</ul>
+
+<% data = {} %>
+<%
+	data["new"] = current_user.projects.where('status = ?',"new").size
+	data["ongoing"] = current_user.projects.where('status = ?',"on-going").size
+	data["completed"] = current_user.projects.where('status = ?',"completed").size
+%>
+
+<%= pie_chart(data) %>	
