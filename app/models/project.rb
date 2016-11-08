@@ -33,7 +33,7 @@ class Project < ActiveRecord::Base
 	end
 
 	def incomplete
-		 self.tasks.where('is_complete = ?',false)
+		 self.tasks.where('is_complete = ? AND due_date >= ?',false, Date.today)
 	end
 
 	def overdue

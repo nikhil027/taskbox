@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/tasks/mark_as_incomplete'
+  get '/tasks/mark_as_complete'
   devise_for :users
   resources :projects
   resources :clients

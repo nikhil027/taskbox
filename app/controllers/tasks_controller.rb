@@ -9,6 +9,26 @@ class TasksController < ApplicationController
 		end
 	end	
 
+	def update
+		task = Task.find(params[:id])
+		task.update_attributes(task_params)
+		Notification.task_completed(task).deliver
+		redirect_to :back, notice: "Sucessfully Completed Task"
+	end	
+
+	def mark_as_complete
+		task = Task.find(params[:task_id])
+		task.update_attributes(is_complete:true)
+		Notification.task_completed(task).deliver
+		redirect_to :back, notice: "Sucessfully Completed Task"
+	end	
+
+	def mark_as_incomplete
+		@task = Task.find(params[:task_id])
+		@task.update_attributes(is_complete:false)
+		redirect_to :back, notice: "Sucessfully updated Task status"
+	end
+
 private
 
 def task_params
