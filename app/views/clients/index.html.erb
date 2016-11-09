@@ -1,6 +1,9 @@
 <h2>Listing clients</h2>
 <p>Total clients <%= @clients.size %></p>
 
+<%= link_to "Export to Excel", clients_export_path(format: "xls") %>
+
+
 <!-- new_client_path will return a string "/clients/new"-->
 <%= link_to "Add Client", new_client_path %>
 

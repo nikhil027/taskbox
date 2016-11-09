@@ -1,0 +1,45 @@
+<h2>Listing Clients</h2>
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Company</th>
+			<th>Mobile</th>
+			<th>Total Projects</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= @client.name%></td>
+			<td><%= @client.email%></td>
+			<td><%= @client.company%></td>
+			<td><%= @client.mobile%></td>
+			<td><%= @client.projects.size%></td>
+		</tr>	
+	
+	</tbody>
+</table>
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Start Date</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@client.projects.each do |project|%>
+		<tr>
+			<td><%= project.name%></td>
+			<td><%= project.description%></td>
+			<td><%= project.start_date%></td>
+			<td><%= project.status%></td>
+		</tr>
+		<%end%>	
+	
+	</tbody>
+</table>

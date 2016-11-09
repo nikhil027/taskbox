@@ -63,6 +63,16 @@ class ClientsController < ApplicationController
 
 	end
 
+	def export
+		@clients = current_user.clients
+	end
+
+	def export_client_details
+		@client = Client.find(params[:client_id])
+	end
+
+
+
 
 	
 private

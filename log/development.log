@@ -24665,3 +24665,1701 @@ Processing by ProjectsController#show as HTML
   [1m[35mTask Load (0.1ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ? AND (is_complete = 't')  [["project_id", 12]]
   Rendered projects/show.html.erb within layouts/application (10.2ms)
 Completed 200 OK in 51ms (Views: 47.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2016-11-09 19:25:54 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProjectsController#index as HTML
+Completed 401 Unauthorized in 52ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2016-11-09 19:25:55 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (50.4ms)
+Completed 200 OK in 498ms (Views: 461.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2016-11-09 19:25:59 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yk6u/bCufgK/QhDKLUg5EbYKjBy3v4BkCZzVvUraSIEGc8tqlRuhNTPAMWHfVAHy2bKXz+pBbqvdlmEGIzQaGA==", "user"=>{"email"=>"nikhil.sim@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "nikhil.sim@gmail.com"]]
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (5.8ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-11-08 13:20:30.585915"], ["current_sign_in_at", "2016-11-09 13:56:00.109405"], ["sign_in_count", 9], ["updated_at", "2016-11-09 13:56:00.112298"], ["id", 1]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 277ms (ActiveRecord: 8.3ms)
+
+
+Started GET "/" for ::1 at 2016-11-09 19:26:00 +0530
+Processing by ProjectsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."user_id" = ? AND (status = 'new')  [["user_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."user_id" = ? AND (status = 'on-going')[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."user_id" = ? AND (status = 'completed')  [["user_id", 1]]
+  Rendered projects/index.html.erb within layouts/application (25.1ms)
+Completed 200 OK in 159ms (Views: 107.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:26:09 +0530
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  [1m[36mClient Load (1.2ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered clients/index.html.erb within layouts/application (87.4ms)
+Completed 500 Internal Server Error in 139ms (ActiveRecord: 2.1ms)
+
+ActionView::Template::Error (undefined method `client_export_path' for #<#<Class:0x007fbf9cd028a8>:0x007fbf99eeb500>
+Did you mean?  clients_export_path
+               clients_export_url):
+    1: <h2>Listing clients</h2>
+    2: <p>Total clients <%= @clients.size %></p>
+    3: 
+    4: <%= link_to "Export to Excel", client_export_path(format: "xls") %>
+    5: 
+    6: 
+    7: <!-- new_client_path will return a string "/clients/new"-->
+  app/views/clients/index.html.erb:4:in `_app_views_clients_index_html_erb___1935883694417530263_70230449013000'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (80.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (80.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (177.9ms)
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:26:46 +0530
+Processing by ClientsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mClient Load (0.3ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  Rendered clients/index.html.erb within layouts/application (48.6ms)
+Completed 500 Internal Server Error in 80ms (ActiveRecord: 1.7ms)
+
+ActionView::Template::Error (undefined method `client_export_path' for #<#<Class:0x007fbf9b453d98>:0x007fbf9dea7b80>
+Did you mean?  clients_export_path
+               clients_export_url):
+    1: <h2>Listing clients</h2>
+    2: <p>Total clients <%= @clients.size %></p>
+    3: 
+    4: <%= link_to "Export to Excel", client_export_path(format: "xls") %>
+    5: 
+    6: 
+    7: <!-- new_client_path will return a string "/clients/new"-->
+  app/views/clients/index.html.erb:4:in `_app_views_clients_index_html_erb___1935883694417530263_70230482433000'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (70.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.8ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (63.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (135.9ms)
+
+
+Started GET "/" for ::1 at 2016-11-09 19:26:52 +0530
+Processing by ProjectsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."user_id" = ? AND (status = 'new')[0m  [["user_id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."user_id" = ? AND (status = 'on-going')  [["user_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."user_id" = ? AND (status = 'completed')[0m  [["user_id", 1]]
+  Rendered projects/index.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 50ms (Views: 40.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:26:52 +0530
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:27:00 +0530
+Processing by ClientsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mClient Load (0.2ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  Rendered clients/index.html.erb within layouts/application (107.2ms)
+Completed 500 Internal Server Error in 129ms (ActiveRecord: 0.7ms)
+
+ActionView::Template::Error (undefined method `client_export_path' for #<#<Class:0x007fbf9b453d98>:0x007fbf9fe5d330>
+Did you mean?  clients_export_path
+               clients_export_url):
+    1: <h2>Listing clients</h2>
+    2: <p>Total clients <%= @clients.size %></p>
+    3: 
+    4: <%= link_to "Export to Excel", client_export_path(format: "xls") %>
+    5: 
+    6: 
+    7: <!-- new_client_path will return a string "/clients/new"-->
+  app/views/clients/index.html.erb:4:in `_app_views_clients_index_html_erb___1935883694417530263_70230482433000'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.2ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.3ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (71.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (2.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (67.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (158.8ms)
+
+
+Started GET "/" for ::1 at 2016-11-09 19:28:47 +0530
+Processing by ProjectsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.5ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."user_id" = ? AND (status = 'new')[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."user_id" = ? AND (status = 'on-going')  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."user_id" = ? AND (status = 'completed')[0m  [["user_id", 1]]
+  Rendered projects/index.html.erb within layouts/application (15.8ms)
+Completed 200 OK in 68ms (Views: 45.9ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:28:47 +0530
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:28:56 +0530
+Processing by ClientsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mClient Load (0.2ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 26]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 27]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 28]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 29]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 30]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 31]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 32]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 33]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 34]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 35]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 36]]
+  Rendered clients/index.html.erb within layouts/application (20.4ms)
+Completed 200 OK in 56ms (Views: 48.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/client/export.xls" for ::1 at 2016-11-09 19:29:01 +0530
+
+ActionController::RoutingError (uninitialized constant ClientController):
+  activesupport (4.2.6) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.6) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.6) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.6) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.6) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:70:in `controller_reference'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:60:in `controller'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:39:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (120.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (2.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (68.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (150.0ms)
+
+
+Started GET "/client/export.xls" for ::1 at 2016-11-09 19:29:41 +0530
+
+ActionController::RoutingError (No route matches [GET] "/client/export.xls"):
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.2ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (91.9ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (13.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (79.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (151.5ms)
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:29:48 +0530
+Processing by ClientsController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mClient Load (0.3ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  Rendered clients/index.html.erb within layouts/application (72.0ms)
+Completed 500 Internal Server Error in 106ms (ActiveRecord: 2.0ms)
+
+ActionView::Template::Error (undefined method `client_export_path' for #<#<Class:0x007fbf9e8ad148>:0x007fbf9e87bf58>
+Did you mean?  clients_export_path
+               clients_export_url):
+    1: <h2>Listing clients</h2>
+    2: <p>Total clients <%= @clients.size %></p>
+    3: 
+    4: <%= link_to "Export to Excel", client_export_path(format: "xls") %>
+    5: 
+    6: 
+    7: <!-- new_client_path will return a string "/clients/new"-->
+  app/views/clients/index.html.erb:4:in `_app_views_clients_index_html_erb___1935883694417530263_70230482433000'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (71.8ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.8ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (61.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (141.0ms)
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:30:10 +0530
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  [1m[36mClient Load (0.4ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 26]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 27]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 28]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 29]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 30]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 31]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 32]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 33]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 34]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 35]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 36]]
+  Rendered clients/index.html.erb within layouts/application (30.4ms)
+Completed 200 OK in 60ms (Views: 55.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:30:10 +0530
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:30:11 +0530
+
+
+Started GET "/clients/export.xls" for ::1 at 2016-11-09 19:30:14 +0530
+Processing by ClientsController#export as XLS
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.1ms)
+
+ActionView::MissingTemplate (Missing template clients/export, application/export with {:locale=>[:en], :formats=>[:xls], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/nikhil/rails_sept/rails/taskbox/app/views"
+  * "/Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.2.0/app/views"
+):
+  actionview (4.2.6) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.6) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.6) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.6) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.6) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.6) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.6) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.6) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.6) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.6) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.6) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.6) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.6) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.6) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.6) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.6) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (67.9ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (70.2ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (160.6ms)
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:36:29 +0530
+Processing by ClientsController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mClient Load (0.2ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 26]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 27]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 28]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 29]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 30]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 31]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 32]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 33]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 34]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 35]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 36]]
+  Rendered clients/index.html.erb within layouts/application (16.9ms)
+Completed 200 OK in 44ms (Views: 39.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:36:29 +0530
+
+
+Started GET "/clients/export.xls" for ::1 at 2016-11-09 19:36:34 +0530
+Processing by ClientsController#export as XLS
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.3ms)
+
+ActionView::MissingTemplate (Missing template clients/export, application/export with {:locale=>[:en], :formats=>[:xls], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/nikhil/rails_sept/rails/taskbox/app/views"
+  * "/Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.2.0/app/views"
+):
+  actionview (4.2.6) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.6) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.6) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.6) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.6) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.6) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.6) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.6) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.6) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.6) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.6) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.6) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.6) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.6) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.6) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.6) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.8ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.9ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (82.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (65.3ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (146.2ms)
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:37:18 +0530
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 26]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 27]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 28]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 29]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 30]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 31]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 32]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 33]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 34]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 35]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 36]]
+  Rendered clients/index.html.erb within layouts/application (16.8ms)
+Completed 200 OK in 54ms (Views: 48.2ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:37:18 +0530
+
+
+Started GET "/clients/export.xls" for ::1 at 2016-11-09 19:37:22 +0530
+Processing by ClientsController#export as XLS
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (0.2ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  Rendered clients/export.xls.erb (47.3ms)
+Completed 500 Internal Server Error in 64ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (undefined local variable or method `index' for #<#<Class:0x007fbf9e8ad148>:0x007fbf9cb82500>):
+    14: 	<tbody>
+    15: 		<% @clients.each_with_index do |client|%>
+    16: 		<tr>
+    17: 			<td><%= index + 1%></td>
+    18: 			<td><%= client.name%></td>
+    19: 			<td><%= client.email%></td>
+    20: 			<td><%= client.company%></td>
+  app/views/clients/export.xls.erb:17:in `block in _app_views_clients_export_xls_erb__201985775563269214_70230472394220'
+  app/views/clients/export.xls.erb:15:in `_app_views_clients_export_xls_erb__201985775563269214_70230472394220'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.2ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (77.3ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (3.3ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.9ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (80.3ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (159.7ms)
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:37:42 +0530
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 26]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 27]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 28]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 29]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 30]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 31]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 32]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 33]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 34]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 35]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 36]]
+  Rendered clients/index.html.erb within layouts/application (20.5ms)
+Completed 200 OK in 70ms (Views: 65.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:37:42 +0530
+
+
+Started GET "/clients/export.xls" for ::1 at 2016-11-09 19:37:47 +0530
+Processing by ClientsController#export as XLS
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (0.2ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 26]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 27]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 28]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 29]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 30]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 31]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 32]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 33]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 34]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 35]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 36]]
+  Rendered clients/export.xls.erb (13.1ms)
+Completed 200 OK in 28ms (Views: 25.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/clients/export.xls" for ::1 at 2016-11-09 19:38:53 +0530
+Processing by ClientsController#export as XLS
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 26]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 27]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 28]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 29]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 30]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 31]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 32]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 33]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 34]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 35]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 36]]
+  Rendered clients/export.xls.erb (12.8ms)
+Completed 200 OK in 24ms (Views: 18.7ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/clients/26" for ::1 at 2016-11-09 19:43:15 +0530
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"26"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (0.2ms)[0m  SELECT  "clients".* FROM "clients" WHERE "clients"."user_id" = ? AND "clients"."id" = ? LIMIT 1  [["user_id", 1], ["id", 26]]
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 26]]
+  Rendered clients/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 46ms (Views: 42.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:45:50 +0530
+Processing by ClientsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mClient Load (0.7ms)[0m  SELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 26]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 27]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 28]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 29]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 30]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 31]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 32]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 33]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 34]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 35]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 36]]
+  Rendered clients/index.html.erb within layouts/application (30.1ms)
+Completed 200 OK in 94ms (Views: 65.2ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:45:50 +0530
+
+
+Started GET "/clients/26" for ::1 at 2016-11-09 19:45:55 +0530
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"26"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mClient Load (0.3ms)[0m  [1mSELECT  "clients".* FROM "clients" WHERE "clients"."user_id" = ? AND "clients"."id" = ? LIMIT 1[0m  [["user_id", 1], ["id", 26]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 26]]
+  Rendered clients/show.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 45ms (Views: 40.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/clients/export_client_details.xls" for ::1 at 2016-11-09 19:45:57 +0530
+Processing by ClientsController#export_client_details as XLS
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (0.2ms)[0m  SELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? LIMIT 1  [["id", nil]]
+Completed 404 Not Found in 3ms (ActiveRecord: 0.3ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Client with 'id'=):
+  app/controllers/clients_controller.rb:71:in `export_client_details'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (79.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (81.3ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (160.8ms)
+
+
+Started GET "/clients/26" for ::1 at 2016-11-09 19:50:17 +0530
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"26"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (0.2ms)[0m  SELECT  "clients".* FROM "clients" WHERE "clients"."user_id" = ? AND "clients"."id" = ? LIMIT 1  [["user_id", 1], ["id", 26]]
+  Rendered clients/show.html.erb within layouts/application (52.0ms)
+Completed 500 Internal Server Error in 106ms (ActiveRecord: 1.7ms)
+
+ActionView::Template::Error (undefined local variable or method `client' for #<#<Class:0x007fbf9fc550d8>:0x007fbf9fc34388>
+Did you mean?  @client):
+    1: <h2><%=@client.name %></h2>
+    2: <%= link_to "Export to Excel", clients_export_client_details_path(client_id: client.id, format: "xls") %>
+    3: <br>
+    4: 
+    5: 
+  app/views/clients/show.html.erb:2:in `_app_views_clients_show_html_erb__1876755586287895618_70230491067780'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (74.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (62.3ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (153.6ms)
+
+
+Started GET "/clients" for ::1 at 2016-11-09 19:51:02 +0530
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "clients" WHERE "clients"."user_id" = ?  [["user_id", 1]]
+  [1m[36mClient Load (0.3ms)[0m  [1mSELECT "clients".* FROM "clients" WHERE "clients"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 26]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 27]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 28]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 29]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 30]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 31]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 32]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 33]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 34]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 35]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 36]]
+  Rendered clients/index.html.erb within layouts/application (24.8ms)
+Completed 200 OK in 55ms (Views: 50.7ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:51:02 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:51:03 +0530
+
+
+Started GET "/clients/27" for ::1 at 2016-11-09 19:51:07 +0530
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"27"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (7.2ms)[0m  SELECT  "clients".* FROM "clients" WHERE "clients"."user_id" = ? AND "clients"."id" = ? LIMIT 1  [["user_id", 1], ["id", 27]]
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 27]]
+  [1m[35mTask Load (0.2ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?  [["project_id", 5]]
+  [1m[36mTask Load (0.2ms)[0m  [1mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?[0m  [["project_id", 8]]
+  Rendered clients/show.html.erb within layouts/application (142.9ms)
+Completed 200 OK in 208ms (Views: 178.6ms | ActiveRecord: 8.5ms)
+
+
+Started GET "/clients/export_client_details.xls?client_id=27" for ::1 at 2016-11-09 19:51:10 +0530
+Processing by ClientsController#export_client_details as XLS
+  Parameters: {"client_id"=>"27"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? LIMIT 1[0m  [["id", nil]]
+Completed 404 Not Found in 6ms (ActiveRecord: 0.5ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Client with 'id'=):
+  app/controllers/clients_controller.rb:71:in `export_client_details'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (79.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.9ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.8ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (77.8ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (164.9ms)
+
+
+Started GET "/clients/27" for ::1 at 2016-11-09 19:51:40 +0530
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"27"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT  "clients".* FROM "clients" WHERE "clients"."user_id" = ? AND "clients"."id" = ? LIMIT 1[0m  [["user_id", 1], ["id", 27]]
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 27]]
+  [1m[36mTask Load (0.2ms)[0m  [1mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?[0m  [["project_id", 5]]
+  [1m[35mTask Load (0.1ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?  [["project_id", 8]]
+  Rendered clients/show.html.erb within layouts/application (33.2ms)
+Completed 200 OK in 114ms (Views: 71.5ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:51:41 +0530
+
+
+Started GET "/clients/export_client_details.xls?client_id=27" for ::1 at 2016-11-09 19:51:43 +0530
+Processing by ClientsController#export_client_details as XLS
+  Parameters: {"client_id"=>"27"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (0.2ms)[0m  SELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? LIMIT 1  [["id", 27]]
+  Rendered clients/export_client_details.xls.erb (77.0ms)
+Completed 500 Internal Server Error in 94ms (ActiveRecord: 0.3ms)
+
+SyntaxError (/Users/nikhil/rails_sept/rails/taskbox/app/views/clients/export_client_details.xls.erb:24: syntax error, unexpected keyword_ensure, expecting end-of-input):
+  app/views/clients/export_client_details.xls.erb:24: syntax error, unexpected keyword_ensure, expecting end-of-input
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.2ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (72.9ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (67.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (164.9ms)
+
+
+Started GET "/clients/27" for ::1 at 2016-11-09 19:52:04 +0530
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"27"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (0.2ms)[0m  SELECT  "clients".* FROM "clients" WHERE "clients"."user_id" = ? AND "clients"."id" = ? LIMIT 1  [["user_id", 1], ["id", 27]]
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 27]]
+  [1m[35mTask Load (0.3ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?  [["project_id", 5]]
+  [1m[36mTask Load (0.2ms)[0m  [1mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?[0m  [["project_id", 8]]
+  Rendered clients/show.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 41ms (Views: 35.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:52:04 +0530
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:52:04 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:52:04 +0530
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:52:04 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:52:04 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:52:04 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:52:04 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:52:04 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:52:04 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:52:05 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:52:05 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:52:05 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:52:05 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:52:05 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:52:05 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:52:05 +0530
+
+
+Started GET "/clients/export_client_details.xls?client_id=27" for ::1 at 2016-11-09 19:52:07 +0530
+Processing by ClientsController#export_client_details as XLS
+  Parameters: {"client_id"=>"27"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mClient Load (0.1ms)[0m  [1mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? LIMIT 1[0m  [["id", 27]]
+  Rendered clients/export_client_details.xls.erb (6.5ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    12: 	</thead>
+    13: 	<tbody>
+    14: 		<tr>
+    15: 			<td><%= @client.name%></td>
+    16: 			<td><%= @client.email%></td>
+    17: 			<td><%= @client.company%></td>
+    18: 			<td><%= @client.mobile%></td>
+  app/views/clients/export_client_details.xls.erb:15:in `_app_views_clients_export_client_details_xls_erb__452267382632141879_70230473235760'
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.8ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (88.7ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (69.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (163.1ms)
+
+
+Started GET "/clients/27" for ::1 at 2016-11-09 19:52:54 +0530
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"27"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mClient Load (0.2ms)[0m  [1mSELECT  "clients".* FROM "clients" WHERE "clients"."user_id" = ? AND "clients"."id" = ? LIMIT 1[0m  [["user_id", 1], ["id", 27]]
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 27]]
+  [1m[36mTask Load (0.2ms)[0m  [1mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?[0m  [["project_id", 5]]
+  [1m[35mTask Load (0.2ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?  [["project_id", 8]]
+  Rendered clients/show.html.erb within layouts/application (34.1ms)
+Completed 200 OK in 120ms (Views: 85.0ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:52:54 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:52:54 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:52:54 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:52:54 +0530
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:52:54 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:52:55 +0530
+
+
+Started GET "/clients/export_client_details.xls?client_id=27" for ::1 at 2016-11-09 19:52:57 +0530
+Processing by ClientsController#export_client_details as XLS
+  Parameters: {"client_id"=>"27"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (0.1ms)[0m  SELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? LIMIT 1  [["id", 27]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 27]]
+  Rendered clients/export_client_details.xls.erb (2.4ms)
+Completed 200 OK in 13ms (Views: 9.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/clients/export_client_details.xls?client_id=27" for ::1 at 2016-11-09 19:53:03 +0530
+Processing by ClientsController#export_client_details as XLS
+  Parameters: {"client_id"=>"27"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mClient Load (0.1ms)[0m  [1mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? LIMIT 1[0m  [["id", 27]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 27]]
+  Rendered clients/export_client_details.xls.erb (1.7ms)
+Completed 200 OK in 13ms (Views: 10.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/clients/27" for ::1 at 2016-11-09 19:57:41 +0530
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"27"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (0.1ms)[0m  SELECT  "clients".* FROM "clients" WHERE "clients"."user_id" = ? AND "clients"."id" = ? LIMIT 1  [["user_id", 1], ["id", 27]]
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 27]]
+  [1m[35mTask Load (0.3ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?  [["project_id", 5]]
+  [1m[36mTask Load (0.2ms)[0m  [1mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?[0m  [["project_id", 8]]
+  Rendered clients/show.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 48ms (Views: 42.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:57:41 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:57:41 +0530
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:57:41 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:57:41 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:57:42 +0530
+
+
+Started GET "/clients/export_client_details.xls?client_id=27" for ::1 at 2016-11-09 19:57:44 +0530
+Processing by ClientsController#export_client_details as XLS
+  Parameters: {"client_id"=>"27"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mClient Load (0.1ms)[0m  [1mSELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? LIMIT 1[0m  [["id", 27]]
+  Rendered clients/export_client_details.xls.erb (1.4ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.2ms)
+
+SyntaxError (/Users/nikhil/rails_sept/rails/taskbox/app/views/clients/export_client_details.xls.erb:45: syntax error, unexpected keyword_ensure, expecting keyword_end
+/Users/nikhil/rails_sept/rails/taskbox/app/views/clients/export_client_details.xls.erb:47: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/views/clients/export_client_details.xls.erb:45: syntax error, unexpected keyword_ensure, expecting keyword_end
+  app/views/clients/export_client_details.xls.erb:47: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (78.2ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (68.2ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.8ms)
+  Rendered /Users/nikhil/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (169.3ms)
+
+
+Started GET "/clients/27" for ::1 at 2016-11-09 19:58:02 +0530
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"27"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mClient Load (0.1ms)[0m  [1mSELECT  "clients".* FROM "clients" WHERE "clients"."user_id" = ? AND "clients"."id" = ? LIMIT 1[0m  [["user_id", 1], ["id", 27]]
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 27]]
+  [1m[36mTask Load (0.1ms)[0m  [1mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?[0m  [["project_id", 5]]
+  [1m[35mTask Load (0.2ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = ?  [["project_id", 8]]
+  Rendered clients/show.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 36ms (Views: 30.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/clients.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/sandbox.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/say.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/clients.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/sandbox.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/say.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/chartkick.self-c1cc238bd190b082728a95e6fbc3b08c594e10de9f775c0c4903f9ed830cf940.js?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/assets/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-11-09 19:58:03 +0530
+
+
+Started GET "/clients/export_client_details.xls?client_id=27" for ::1 at 2016-11-09 19:58:04 +0530
+Processing by ClientsController#export_client_details as XLS
+  Parameters: {"client_id"=>"27"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mClient Load (0.1ms)[0m  SELECT  "clients".* FROM "clients" WHERE "clients"."id" = ? LIMIT 1  [["id", 27]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "projects" WHERE "projects"."client_id" = ?[0m  [["client_id", 27]]
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."client_id" = ?  [["client_id", 27]]
+  Rendered clients/export_client_details.xls.erb (4.6ms)
+Completed 200 OK in 17ms (Views: 14.1ms | ActiveRecord: 0.6ms)
