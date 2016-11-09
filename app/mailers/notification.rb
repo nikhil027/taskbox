@@ -10,4 +10,10 @@ class Notification < ApplicationMailer
 
     mail to: "#{@task.project.client.email}" , subject: "The task #{@task.title} is now complete"
   end
+
+  def task_incomplete(task)
+    @task = task
+
+    mail to: "#{@task.project.client.email}" , subject: "The task #{@task.title} is now reopened"
+  end
 end
