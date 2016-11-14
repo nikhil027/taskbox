@@ -14,6 +14,7 @@ class ClientsController < ApplicationController
 	def create
 		@client = Client.new(client_param)
 		@client.user_id = current_user.id
+		@client.gender = determine_gender(@client.name)
 		if @client.save
 			redirect_to clients_path
 		else
@@ -80,5 +81,11 @@ private
 	def client_param
 		params[:client].permit(:name, :mobile, :website, :company, :email)
 	end
+
+	def determine_gender(name)
+		response = HTTParty.get("https://www.gender-api.com/get?name=#{name}&key=pRPLCejozFwCHFbVCR")
+		return response.parsed_response["gender"]
+	end
+
 
 end

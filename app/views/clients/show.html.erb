@@ -1,4 +1,4 @@
-<h2><%=@client.name %></h2>
+<h2><%=@client.name %>       <%=@client.gender%></h2>
 <%= link_to "Export to Excel", clients_export_client_details_path(client_id: @client.id, format: "xls") %>
 <br>
 

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'httparty'
 #gem used as ruby api builder language, jbuilder, active model serializers, respond_to :json
 gem 'rabl'
 #gem used to create charts 
