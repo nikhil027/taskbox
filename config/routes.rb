@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/sandbox/mtrzomato'
+  get '/sandbox/zomato'
   get 'sandbox/get_jobs'
   namespace :api, defaults: {format: "json"} do
     namespace :v1 do

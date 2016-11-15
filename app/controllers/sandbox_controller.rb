@@ -8,7 +8,11 @@ class SandboxController < ApplicationController
       	end
 	end
 
+	def zomato
+	end
 
+	def mtrzomato
+	end
 
 
   def clients
