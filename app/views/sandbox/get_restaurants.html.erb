@@ -1,0 +1,74 @@
+<h3>Search Jobs</h3>
+
+<%= form_tag({url: sandbox_get_restaurants_path},{method: :get}) do%>
+
+	<%= label_tag :restaurant_id%><br>
+	<%= text_field_tag :restaurant_id%><br>
+
+
+	<%= submit_tag "Search.."%>
+
+<%end%>
+<%if !@restaurant.nil?%>
+<%restaurant = @restaurant%>
+<br/>
+<h1><%= restaurant["name"] %></h1><br>
+<%= image_tag(restaurant["thumb"]) %><br>
+<ul>
+<li><b>Name: </b><%= restaurant["name"] %></li><br>
+<li><b>Visit: </b><%= link_to "#{restaurant["url"]}", restaurant["url"] %></li><br>
+<li><b>Address: </b><%= restaurant["location"]["address"]%> - <%= restaurant["location"]["locality"]%> - <%= restaurant["location"]["city"]%> - <%= restaurant["location"]["zipcode"]%></li><br>
+<li><b>Cuisines: </b><%= restaurant["cuisines"] %></li><br>
+<li><b>Average Cost for Two: Rs</b><%= restaurant["average_cost_for_two"] %>/-</li><br>
+<li><b>User Ratings: </b><%= restaurant["user_rating"]["aggregate_rating"] %> - <%= restaurant["user_rating"]["votes"] %> votes </li><br>
+<%if !restaurant["has_online_delivery"]%>
+  <li><b>Delivers Online</b></li><br>
+ <%else%>
+  <li><b>No Online Delivery</b></li><br>
+<%end%> 
+<%if !restaurant["is_delivering_now"]%>
+  <li><b>Delivering Now</b></li><br>
+ <%else%>
+  <li><b>No Delivery at this time</b></li><br>
+<%end%> 
+<%if !restaurant["has_table_booking"]%>
+  <li><b>Book your tables here</b></li><br>
+ <%else%>
+  <li><b>Sorry!! No table bookings, visit us directly</b></li><br>
+<%end%> 
+<li><b>Events: </b><%=link_to restaurant["events_url"], restaurant["events_url"]%></li><br>
+
+</ul>
+
+
+<!-- Reviews Section -->
+<%if !@reviews.nil?%>
+<%reviews = @reviews%>
+<h3>Reviews of <%=restaurant["name"]%></h3>
+<h4>Total Reviews are: <%=reviews["reviews_count"]%></h4>
+
+<ol>
+<%reviews["user_reviews"].each do |user_review|%>
+  
+
+  <li><h3><%=user_review["review"]["rating_text"]%></h3><br>
+    <ul>
+      <li><b>Rating: </b><%=user_review["review"]["rating"].to_s%></li><br>
+      <li><b>Review: </b><%=user_review["review"]["review_text"]%></li><br>
+      <li><b>Likes: </b><%=user_review["review"]["likes"].to_s%></li><br>
+      <li><b>Comments: </b><%=user_review["review"]["comments_count"].to_s%></li>     
+    </ul>
+    <h3>About Reviewer:</h3>
+      <ul>
+        <li><b>Name: </b><%=user_review["review"]["user"]["name"]%></li><br>
+        <li><b>Foodie Level: </b><%=user_review["review"]["user"]["foodie_level"]%></li><br>
+        <li><b>View Profile: </b><%=link_to user_review["review"]["user"]["profile_url"],user_review["review"]["user"]["profile_url"]%></li><br>
+        <%= image_tag(user_review["review"]["user"]["profile_image"]) %><br><br>
+      </ul>
+  </li>
+
+<%end%>
+</ol>
+
+<%end%>
+<%end%>

@@ -8,6 +8,14 @@ class SandboxController < ApplicationController
       	end
 	end
 
+	def get_restaurants
+		if params[:restaurant_id]
+			res_id = params[:restaurant_id]
+			@restaurant = HTTParty.get("https://developers.zomato.com/api/v2.1/restaurant?res_id=#{res_id}&apikey=7afbb7d97ebb773334d0d61ce8c4636a")
+			@reviews = HTTParty.get("https://developers.zomato.com/api/v2.1/reviews?res_id=#{res_id}&apikey=7afbb7d97ebb773334d0d61ce8c4636a")
+		end
+	end
+
 	def zomato
 	end
 
