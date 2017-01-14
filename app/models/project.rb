@@ -40,6 +40,18 @@ class Project < ActiveRecord::Base
 		self.tasks.where('is_complete = ? AND due_date <= ?',false, Date.today)
 	end
 
+	def calc_completed
+		(self.complete.size/self.tasks.size.to_f)*100
+	end
+
+	def calc_incomplete
+		(self.incomplete.size/self.tasks.size.to_f)*100
+	end
+
+	def calc_overdue
+		(self.overdue.size/self.tasks.size.to_f)*100
+	end
+
 
 	private
 

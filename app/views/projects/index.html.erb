@@ -1,24 +1,108 @@
-<h2>Listing Projects</h2>
+<div class="row">
+
+<div class="col-md-7">
+	<div class="page-header">
+		<h2>Listing Projects
+	
 
 <!-- new_client_path will return a string "/projects/new"-->
-<%= link_to "Add Project", new_project_path %>
+<div class="pull-right">
+	<%#= link_to "Add Project", new_project_path , class:"btn btn-primary"%>
 
-<ul>
-	<% @projects.each do |project| %>
-		<li> <%=link_to project.name,project_path(project) %>
-	<!-- %A is Day, %d is Date, %b is Month, %y is Year- project.status - project.start_date.strftime("%A, %d %B %Y")-->
-
-	</li>
+	<%=link_to new_project_path, class:"btn btn-primary" do%>
+		<i class="glyphicon glyphicon-plus"></i>Add Project
 	<%end%>
 
+	<%=link_to projects_path(format:"xls"), class:"btn btn-info" do%>
+		<i class="glyphicon glyphicon-download-alt"></i>Download
+	<%end%>
+</div>
+</h2>
+</div>
+<hr>
+<br>	
+<table class="table table-stripped" id="projectsTable">
+	<thead>
+		<tr>
+			<th>Sl No</th>
+			<th>Name</th>
+			<th>Client</th>
+			<th>Status</th>
+			<th>Actions</th> 
+		</tr>
+	</thead>
+	<tbody>
+		<% @projects.each_with_index do |project,index| %>
+		<tr>
+			<td><%=index+1%></td>
+			<td><%=project.name%>
+				<div class="progress">
+					  <div class="progress-bar progress-bar-success progress-bar-striped" style="width: <%=project.calc_completed%>%">
+					    
+					  </div>
+					  <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: <%=project.calc_incomplete%>%">
+					    
+					  </div>
+					  <div class="progress-bar progress-bar-danger progress-bar-striped" style="width: <%=project.calc_overdue%>%">
+					   </div>
+				</div>
+			</td>
+			<td><%=project.client.try(:name)%></td>
+			<td><%=project.status%></td>
+			<td><%=link_to "Show",project_path(project) %></td>
+		</tr>
+		<%end%>	 
+	<!-- %A is Day, %d is Date, %b is Month, %y is Year- project.status - project.start_date.strftime("%A, %d %B %Y")-->
 
-</ul>
+	</tbody>
+</table>	
+	
 
-<% data = {} %>
-<%
-	data["new"] = current_user.projects.where('status = ?',"new").size
-	data["ongoing"] = current_user.projects.where('status = ?',"on-going").size
-	data["completed"] = current_user.projects.where('status = ?',"completed").size
-%>
 
-<%= pie_chart(data) %>	
+
+</div> <!-- col md 7 ends -->
+
+<div class="col-md-5">
+<div class="page-header">
+	<h2>Stats</h2>
+</div>
+<div>
+
+	<% data = {} %>
+		<%
+			data["new"] = current_user.projects.where('status = ?',"new").size
+			data["ongoing"] = current_user.projects.where('status = ?',"on-going").size
+			data["completed"] = current_user.projects.where('status = ?',"completed").size
+		%>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#Pie" aria-controls="home" role="tab" data-toggle="tab">Pie</a></li>
+    <li role="presentation"><a href="#Bar" aria-controls="profile" role="tab" data-toggle="tab">Bar</a></li>
+    <li role="presentation"><a href="#Column" aria-controls="messages" role="tab" data-toggle="tab">Column</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="Pie">
+    	
+		<%= pie_chart(data) %>
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="Bar" style="padding-left: 5px;">
+    
+		<%= bar_chart(data) %>
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="Column">
+    	
+		<%= column_chart(data) %>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+</div>

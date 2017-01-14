@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
 private
 
 	def project_param
-		params[:project].permit(:name, :client_id,:start_date,:description,:status, category_ids: [])
+		params[:project].permit(:name, :client_id,:start_date,:end_date,:description,:status, category_ids: [])
 	end
 
 end

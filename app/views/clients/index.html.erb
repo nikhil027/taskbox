@@ -1,11 +1,26 @@
-<h2>Listing clients</h2>
-<p>Total clients <%= @clients.size %></p>
+<div class="row">
 
-<%= link_to "Export to Excel", clients_export_path(format: "xls") %>
+<div class="col-md-7">
+	<div class="page-header">
+		<h2>Clients
+	
 
+<!-- new_client_path will return a string "/projects/new"-->
+<div class="pull-right">
+	<%#= link_to "Add Project", new_project_path , class:"btn btn-primary"%>
 
-<!-- new_client_path will return a string "/clients/new"-->
-<%= link_to "Add Client", new_client_path %>
+	<%=link_to new_client_path, class:"btn btn-primary" do%>
+		<i class="glyphicon glyphicon-plus"></i>Add Client
+	<%end%>
+
+	<%=link_to clients_export_path(format:"xls"), class:"btn btn-info" do%>
+		<i class="glyphicon glyphicon-download-alt"></i> Download
+	<%end%>
+</div>
+</h2>
+</div>
+<hr>
+
 
 
 <ol>

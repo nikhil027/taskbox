@@ -1,59 +1,155 @@
-<h2><%=@client.name %>       <%=@client.gender%></h2>
-<%= link_to "Export to Excel", clients_export_client_details_path(client_id: @client.id, format: "xls") %>
-<br>
+<div class="row">
+	<div class="col-md-8">
+		<div class="page-header">
+			<h2><%= @client.name %> <%= @client.gender %> </h2>
+		</div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#new" aria-controls="new" role="tab" data-toggle="tab">New</a></li>
+    <li role="presentation"><a href="#on-going" aria-controls="on-going" role="tab" data-toggle="tab">On Going</a></li>
+    <li role="presentation"><a href="#completed" aria-controls="completed" role="tab" data-toggle="tab">Completed</a></li>
+   
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="new">
+
+	<br/><br/>
+	<table class="table table-striped" id="newProjects">
+		<thead>
+				<tr>
+					<th> # </th>
+					<th> Name </th>
+					<th> Actions </th>
+				</tr>
+		</thead>
+		<tbody>
+		<% count = 1 %>
+			<% @client.projects.where('status = ?', "new").each do |project| %>
+			<tr>
+				<td><%= count  %></td>
+				<td><%= project.name.capitalize %>
 
 
-<h3>Listing tasks of this client</h3>
-<ol>
-<% @client.tasks_of_clients.each do |task|%>
-	<li><%=task.title%> - <%= task.due_date%> - <%= task.is_complete%></li>
-<%end%>
-</ol>	
+				<% if !project.tasks.empty? %>	
+					<div class="progress">
+
+  					<div class="progress-bar progress-bar-success progress-bar-striped" style="width: <%= project.calc_completed %>%">
+ 					  </div>
+
+  					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: <%= project.calc_incomplete %>%">
+  					</div>
+
+  					<div class="progress-bar progress-bar-danger progress-bar-striped" style="width: <%= project.calc_overdue %>%">
+
+  					</div>
+					</div>
+					<% end %>
+
+				</td>
+
+				<td><%= link_to "show", project_path(project) %></td>
+			</tr>
+			<% count += 1 %>
+		<% end %>
+		</tbody>
+	</table>
 
 
-<!-- 
-<ol>
-	<@client.projects.each do |project|%>
-		<li> <=link_to project.name, project_path(project) %> </li>
-	<end%>
-
-</ol>
-
-<h3><#"The total projects are : #{@projects.}"%></h3>
-
-<br> -->
-
-<!-- <h3>New Projects</h3>
-
-<ol>
-	<@client.projects.where('status = ?',"new").each do |project|%>
-		<li> <=project.name %> </li>
-	<end%>
-
-</ol>
-
-<br>
-
-<h3>On-going Projects</h3>
-
-<ol>
-	<@projects_ongoing.each do |project|%>
-		<li> <=project.name %> </li>
-	<end%>
-
-</ol>
-
-<br>
-
-<h3>Completed Projects</h3>
-
-<ol>
-	<@projects_completed.each do |project|%>
-		<li> <=project.name %> </li>
-	<end%>
-
-</ol>
- -->
+    </div>
+    <div role="tabpanel" class="tab-pane" id="on-going">
+		
+		<br/><br/>	
+		<table class="table table-striped" id="ongoingProjects">
+		<thead>
+				<tr>
+					<th> # </th>
+					<th> Name </th>
+					<th> Actions </th>
+				</tr>
+		</thead>
+		<tbody>
+		<% count = 1 %>
+			<% @client.projects.where('status = ?', "on-going").each do |project| %>
+			<tr>
+				<td><%= count  %></td>
+				<td><%= project.name.capitalize %>
 
 
-<%=link_to "Back", clients_path %>
+				<% if !project.tasks.empty? %>	
+					<div class="progress">
+
+  					<div class="progress-bar progress-bar-success progress-bar-striped" style="width: <%= project.calc_completed %>%">
+ 					  </div>
+
+  					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: <%= project.calc_incomplete %>%">
+  					</div>
+
+  					<div class="progress-bar progress-bar-danger progress-bar-striped" style="width: <%= project.calc_overdue %>%">
+
+  					</div>
+					</div>
+					<% end %>
+
+				</td>
+
+				<td><%= link_to "show", project_path(project) %></td>
+			</tr>
+			<% count += 1 %>
+		<% end %>
+		</tbody>
+	</table>
+
+
+    </div>
+    <div role="tabpanel" class="tab-pane" id="completed">
+    <br/><br/>
+    		<table class="table table-striped" id="completedProjects">
+		<thead>
+				<tr>
+					<th> # </th>
+					<th> Name </th>
+					<th> Actions </th>
+				</tr>
+		</thead>
+		<tbody>
+		<% count = 1 %>
+			<% @client.projects.where('status = ?', "completed").each do |project| %>
+			<tr>
+				<td><%= count  %></td>
+				<td><%= project.name.capitalize %>
+
+
+				<% if !project.tasks.empty? %>	
+					<div class="progress">
+
+  					<div class="progress-bar progress-bar-success progress-bar-striped" style="width: <%= project.calc_completed %>%">
+ 					  </div>
+
+  					<div class="progress-bar progress-bar-warning progress-bar-striped" style="width: <%= project.calc_incomplete %>%">
+  					</div>
+
+  					<div class="progress-bar progress-bar-danger progress-bar-striped" style="width: <%= project.calc_overdue %>%">
+
+  					</div>
+					</div>
+					<% end %>
+				</td>
+				<td><%= link_to "show", project_path(project) %></td>
+			</tr>
+			<% count += 1 %>
+		<% end %>
+		</tbody>
+	</table>
+    </div>
+  </div>
+	<%= link_to "back", clients_path %>
+
+	<div>
+
+	<div class="col-md-4">
+
+	</div>
+</div>
